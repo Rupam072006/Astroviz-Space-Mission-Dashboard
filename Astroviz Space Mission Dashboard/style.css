@@ -1,0 +1,212 @@
+/* === Base Setup === */
+body {
+  background: radial-gradient(ellipse at 60% 20%, #0d1b2a 0%, #0a0f1a 100%);
+  color: #fff;
+  font-family: 'Orbitron', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#darkMatterCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -3;
+  background: transparent;
+}
+
+/* === Title Styling === */
+.astroviz-title {
+  text-align: center;
+  margin-top: 40px;
+  letter-spacing: 2px;
+  font-size: 2.5rem;
+  text-shadow: 0 0 20px #00eaff88;
+  font-weight: 700;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+.glow {
+  font-size: 3.2rem;
+  color: #fff;
+  text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaffaa, 0 0 30px #00eaff66;
+}
+
+.subtitle {
+  display: block;
+  font-size: 1.4rem;
+  color: #ccc;
+  opacity: 0.85;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+@keyframes pulseGlow {
+  from { text-shadow: 0 0 10px #00eaff; }
+  to { text-shadow: 0 0 20px #00eaff, 0 0 30px #00eaffcc; }
+}
+
+/* === Dashboard Layout === */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.dashboard section {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin: 20px 0;
+  padding: 24px;
+  min-width: 260px;
+  transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+.dashboard section:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 32px 4px #00eaff55;
+  border: 1.5px solid #00eaff;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .astroviz-title {
+    font-size: 1.8rem;
+  }
+
+  .glow {
+    font-size: 2.2rem;
+  }
+}
+
+/* === Solar System === */
+.solar-system {
+  position: relative;
+  width: 550px;
+  height: 550px;
+  margin: 0 auto 32px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ffe066 60%, #ffb700 100%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 80px 30px #ffe066cc, 0 0 200px 80px #ffb70044;
+  z-index: 2;
+}
+
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px dashed #fff3;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit1 { width: 180px; height: 180px; animation: rotate 4s linear infinite; }
+.orbit2 { width: 280px; height: 280px; animation: rotate 7s linear infinite; }
+.orbit3 { width: 400px; height: 400px; animation: rotate 11s linear infinite; }
+.orbit4 { width: 540px; height: 540px; animation: rotate 16s linear infinite; }
+
+.planet {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 16px 4px #fff8, 0 0 32px 8px #0004 inset;
+}
+
+.planet1 { width: 28px; height: 28px; background: #b0c4de; }
+.planet2 { width: 36px; height: 36px; background: #7ec850; }
+.planet3 { width: 44px; height: 44px; background: #f4a460; }
+.planet4 { width: 52px; height: 52px; background: #4682b4; }
+
+@keyframes rotate {
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* === Graph Modal === */
+#graph-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+#graph-modal > div {
+  background: #222;
+  padding: 24px 32px;
+  border-radius: 16px;
+  min-width: 320px;
+  max-width: 95vw;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#graph-title {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+#close-graph {
+  position: absolute;
+  top: 8px;
+  right: 40px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.5rem;
+  z-index: 10;
+}
+
+/* === View Graph Button === */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 0 12px #007BFF55;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 0 18px #007BFFAA;
+}

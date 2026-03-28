@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AstroViz Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Dark Matter Canvas -->
+  <canvas id="darkMatterCanvas"></canvas>
+
+  <!-- Title -->
+  <h1 class="astroviz-title">
+    <span class="glow">🚀 Astro<span style="color:#00eaff;">Viz</span></span><br>
+    <span class="subtitle">SPACE MISSION DASHBOARD</span>
+  </h1>
+
+  <!-- Solar System Animation -->
+  <div class="solar-system">
+    <div class="sun"></div>
+    <div class="orbit orbit1"><div class="planet planet1"></div></div>
+    <div class="orbit orbit2"><div class="planet planet2"></div></div>
+    <div class="orbit orbit3"><div class="planet planet3"></div></div>
+    <div class="orbit orbit4"><div class="planet planet4"></div></div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <section id="telemetry">
+      <h2>🛰️ Satellite Telemetry</h2>
+      <p>Status: Nominal</p>
+      <p>Speed: <span id="speed">27,000</span> km/h</p>
+      <p>Altitude: 408 km</p>
+      <p>Battery: 82%</p>
+    </section>
+
+    <section id="iss-location">
+      <h2>🌍 ISS Live Location</h2>
+      <p>Loading...</p>
+    </section>
+
+    <section id="mars-weather">
+      <h2>🪐 Mars Weather</h2>
+      <p>Loading...</p>
+    </section>
+
+    <section id="asteroids">
+      <h2>☄️ Asteroid Tracking</h2>
+      <p>Closest Asteroid: 2023 AB1</p>
+      <p>Velocity: 25,000 km/h</p>
+      <p>Diameter: 120 m</p>
+      <p>Threat Level: Low</p>
+    </section>
+  </div>
+
+  <!-- Graph Modal -->
+  <div id="graph-modal">
+    <div>
+      <span id="close-graph">&times;</span>
+      <h3 id="graph-title">Graph Title</h3>
+      <canvas id="popupChart" width="400" height="220"></canvas>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
